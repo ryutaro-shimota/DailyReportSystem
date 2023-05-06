@@ -1,0 +1,25 @@
+#global_navi1 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    column-gap: 1px;
+}
+
+#global_navi1 ul li {
+    width: 50px;
+    text-align: left;
+}
+
+#global_navi2 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    column-gap: 1px;
+}
+
+#global_navi2 ul li {
+    width: 50px;
+    text-align: right;
+}

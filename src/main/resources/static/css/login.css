@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+a {
+  text-decoration: none;
+}
+
+#global_navi {
+    margin-bottom: 16px;
+}
+
+#global_navi ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    column-gap: 1px;
+}
+
+#global_navi ul li {
+    padding: 10px;
+    background-color: #2A2A2A;
+    color: #fff;
+}
+
+

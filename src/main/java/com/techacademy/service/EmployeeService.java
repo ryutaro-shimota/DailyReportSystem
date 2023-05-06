@@ -46,7 +46,7 @@ public class EmployeeService {
     public Employee updateEmployee(Integer id, Employee employee) {
         Employee employee1 = getEmployee(id);
         employee1.setName(employee.getName());
-        employee1.getAuthentication().setPassword(employee.getAuthentication().getPassword());
+        employee1.getAuthentication().setPassword(passwordEncoder.encode(employee.getAuthentication().getPassword()));
         employee1.getAuthentication().setRole(employee.getAuthentication().getRole());
         employee1.setUpdatedAt(LocalDateTime.now());
         return repository.save(employee1);

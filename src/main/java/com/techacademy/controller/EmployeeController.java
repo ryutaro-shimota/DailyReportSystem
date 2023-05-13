@@ -1,5 +1,6 @@
 package com.techacademy.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
+import com.techacademy.service.UserDetail;
 
 @Controller
 @RequestMapping("employee")
@@ -22,14 +24,16 @@ public class EmployeeController {
 
     // 従業員一覧画面
     @GetMapping("/list")
-    public String getList(Model model) {
+    public String getList(Model model, @AuthenticationPrincipal UserDetail detail) {
+        model.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("employeelist", service.getEmployeeList());
         return "/employee/list";
     }
 
     //従業員登録画面
     @GetMapping("/register")
-    public String getRegister(@ModelAttribute Employee employee) {
+    public String getRegister(@ModelAttribute Employee employee,@AuthenticationPrincipal UserDetail detail, Model model) {
+        model.addAttribute("loginUser", detail.getEmployee());
         return "/employee/register";
     }
 
@@ -42,14 +46,16 @@ public class EmployeeController {
 
     //従業員詳細画面
     @GetMapping("/detail/{id}/")
-    public String getDetail(@PathVariable("id") Integer id, Model model) {
+    public String getDetail(@PathVariable("id") Integer id, Model model,@AuthenticationPrincipal UserDetail detail) {
+        model.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("employee", service.getEmployee(id));
         return "/employee/detail";
     }
 
     //従業員編集画面
     @GetMapping("/edit/{id}/")
-    public String getEdit(@PathVariable("id") Integer id, Model model) {
+    public String getEdit(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal UserDetail detail) {
+        model.addAttribute("loginUser", detail.getEmployee());
         Employee employee = service.getEmployee(id);
         employee.getAuthentication().setPassword("");
         model.addAttribute("employee", employee);

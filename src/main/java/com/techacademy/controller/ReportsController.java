@@ -27,14 +27,14 @@ public class ReportsController {
     public String getList(Model model,Model model2,@AuthenticationPrincipal UserDetail detail) {
         model2.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("reportsList", service.getReportsList());
-        return "/reports/list";
+        return "reports/list";
     }
 
     //日報登録画面
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Report report,  @AuthenticationPrincipal UserDetail detail, Model model) {
         model.addAttribute("loginUser", detail.getEmployee());
-;;        return "/reports/register";
+;;        return "reports/register";
     }
 
     //日報登録処理
@@ -53,9 +53,9 @@ public class ReportsController {
         model.addAttribute("report", service.getReport(id));
         model2.addAttribute("loginUser", detail.getEmployee());
         if (detail.getEmployee().getName().equals(report.getEmployee().getName())) {
-            return "/reports/detail";
+            return "reports/detail";
         } else {
-            return "/reports/detail2";
+            return "reports/detail2";
         }
     }
 
@@ -65,7 +65,7 @@ public class ReportsController {
         Report report= service.getReport(id);
         model.addAttribute("report", report);
         model2.addAttribute("loginUser", detail.getEmployee());
-        return "/reports/edit";
+        return "reports/edit";
     }
 
     //日報更新処理

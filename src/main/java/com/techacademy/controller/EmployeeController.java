@@ -27,14 +27,14 @@ public class EmployeeController {
     public String getList(Model model, @AuthenticationPrincipal UserDetail detail) {
         model.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("employeelist", service.getEmployeeList());
-        return "/employee/list";
+        return "employee/list";
     }
 
     //従業員登録画面
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee,@AuthenticationPrincipal UserDetail detail, Model model) {
         model.addAttribute("loginUser", detail.getEmployee());
-        return "/employee/register";
+        return "employee/register";
     }
 
     //従業員登録処理
@@ -49,7 +49,7 @@ public class EmployeeController {
     public String getDetail(@PathVariable("id") Integer id, Model model,@AuthenticationPrincipal UserDetail detail) {
         model.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("employee", service.getEmployee(id));
-        return "/employee/detail";
+        return "employee/detail";
     }
 
     //従業員編集画面
@@ -59,7 +59,7 @@ public class EmployeeController {
         Employee employee = service.getEmployee(id);
         employee.getAuthentication().setPassword("");
         model.addAttribute("employee", employee);
-        return "/employee/edit";
+        return "employee/edit";
     }
 
     //従業員更新処理

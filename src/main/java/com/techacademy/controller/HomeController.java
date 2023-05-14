@@ -24,6 +24,6 @@ public class HomeController {
     public String getList(Model model,Model model2,@AuthenticationPrincipal UserDetail detail) {
         model2.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("reportsList", service.getOwnReportsList(detail.getEmployee()));
-        return "/home";
+        return "home";
     }
 }

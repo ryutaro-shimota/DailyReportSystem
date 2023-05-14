@@ -18,12 +18,12 @@ public class HomeController {
         this.service = service;
     }
 
-    
+
     //管理画面
     @GetMapping("/")
     public String getList(Model model,Model model2,@AuthenticationPrincipal UserDetail detail) {
         model2.addAttribute("loginUser", detail.getEmployee());
         model.addAttribute("reportsList", service.getOwnReportsList(detail.getEmployee()));
-        return "/reports/home";
+        return "/home";
     }
 }
